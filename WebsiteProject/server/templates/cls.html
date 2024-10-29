@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Classifier</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dropzone.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+
+
+<body>
+
+{% block content %}
+
+<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+    <h2 class="w3-wide">Celebrity Classifier</h2>
+    <p class="w3-opacity"><i>. . .</i></p>
+</div>
+
+    <div class="container">
+        <div class="row">
+        <div class="col card-wrapper" data-player="lionel_messi">
+                <div class="card border-0">
+                    <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
+                        <img class="w-100 h-100" src="{{ url_for('static', filename='lionel_messi_pfp.jpg') }}" alt="Card image cap">
+                    </div>
+                    <div class="card-body text-center mt-4">
+                        <h4 class="text-uppercase card-title">Lionel Messi</h4>
+                    </div>
+                </div>
+            </div>
+
+        <div class="col card-wrapper" data-player="andrew_tate">
+                    <div class="card border-0">
+                        <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
+                            <img class="w-100 h-100" src="{{ url_for('static', filename='andrew_tate_pfp.jpg') }}" alt="Card image cap">
+                        </div>
+                        <div class="card-body text-center mt-4">
+                            <h4 class="text-uppercase card-title">Andrew Tate</h4>
+                        </div>
+                    </div>
+            </div>
+
+        <div class="col card-wrapper" data-player="elon_musk">
+                    <div class="card border-0">
+                        <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
+                            <img class="w-100 h-100" src="{{ url_for('static', filename='elon_musk_pfp.jpg') }}" alt="Card image cap">
+                        </div>
+                        <div class="card-body text-center mt-4">
+                            <h4 class="text-uppercase card-title">Elon Musk</h4>
+                        </div>
+                    </div>
+            </div>
+
+        <div class="col card-wrapper" data-player="leonardo_dicaprio">
+                <div class="card border-0">
+                    <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
+                        <img class="w-100 h-100" src="{{ url_for('static', filename='leonardo_dicaprio_pfp.jpg') }}" alt="Card image cap">
+                    </div>
+                    <div class="card-body text-center mt-4">
+                        <h4 class="text-uppercase card-title">Leonardo Dicaprio</h4>
+                    </div>
+                </div>
+            </div>
+
+        <div class="col card-wrapper" data-player="rumen_radev">
+                <div class="card border-0">
+                    <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
+                        <img class="w-100 h-100" src="{{ url_for('static', filename='rumen_radev_pfp.jpg') }}" alt="Card image cap">
+                    </div>
+                    <div class="card-body text-center mt-4">
+                        <h4 class="text-uppercase card-title">Rumen Radev</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-12 mx-auto">
+                        <form action="/file-upload" class="dropzone" id="dropzone">
+                            <div class="dz-message needsclick">
+                                <img src="{{ url_for('static', filename='upload.png') }}" width="50vw" height="50vw"><br>
+                                <span class="note needsclick">Drop files here or click to upload</span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-3 mx-auto">
+                        <button id="submitBtn" type="button" class="btn btn-success">Classify</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-8 error" id="error" >
+                <p>Can't classify image. Classifier was not able to detect face and two eyes properly</p>
+            </div>
+
+            <div class="col-sm-4" id="resultHolder">
+            </div>
+
+
+            <div class="col-sm-4" id="divClassTable">
+                <table id="classTable">
+                        <tr>
+                            <th>Player</th>
+                            <th>Probability Score</th>
+                        </tr>
+                        <tr>
+                            <td>Lionel Messi</td>
+                            <td id="score_lionel_messi"></td>
+                        </tr>
+                        <tr>
+                            <td>Andrew Tate</td>
+                            <td id="score_andrew_tate"></td>
+                        </tr>
+                        <tr>
+                            <td>Elon Musk</td>
+                            <td id="score_elon_musk"></td>
+                        </tr>
+                        <tr>
+                            <td>Leonardo Dicaprio</td>
+                            <td id="score_leonardo_dicaprio"></td>
+                        </tr>
+                        <tr>
+                            <td>Rumen Radev</td>
+                            <td id="score_rumen_radev"></td>
+                        </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <div></div>
+
+{% endblock %}
+
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="{{ url_for('static', filename='dropzone.min.js') }}"></script>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</html>
